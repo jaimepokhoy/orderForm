@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>Order Form</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 <div id="container">
@@ -18,7 +19,7 @@ class Application extends React.Component {
 
   render() {
     return(
-    <div>
+    <div id="services">
     <Title />
     <Table products={this.props.items}/>
     </div>
@@ -46,6 +47,7 @@ class Table extends React.Component {
 
   render() {
     var rows = [];
+    // console.log(rows);
 
     this.props.products.forEach((product) => {
         rows.push(<TableRow name={product.name} price={product.price} addTotal={this.addTotal} key={product.name}/>);
@@ -77,11 +79,18 @@ class TableRow extends React.Component {
 
     this.setState({active: active});
     this.props.addTotal(active ? this.props.price : -this.props.price);
+
   }
 
   render() {
+    console.log(this.state.active);
+    var blue = 'blue';
+
     return(
-      <tr onClick={this.clickHandler}>
+      // <tr className={this.state.active ? 'blue' : ''} onClick={this.clickHandler}>
+      <tr className="blue" onClick={this.clickHandler}>
+      // <tr style={{bgcolor: 'red'}} onClick={this.clickHandler} >
+      // <tr onClick={this.clickHandler}>
       <td>{this.props.name}</td>
       <td>$ {this.props.price}</td>
       </tr>
